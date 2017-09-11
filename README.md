@@ -1,10 +1,11 @@
-# EC601-HW1
+# Age/Sex Detection
 
 ## Members
 
 Keval Khara  
 
-Jinguang Guo
+Jinguang Guo  
 
-Lijun Xiao
+Lijun Xiao  
 
+Age/Sex Detection
