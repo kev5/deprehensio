@@ -1,4 +1,4 @@
-# Age/Sex Detection
+# Age/Gender Detection
 
 ## Members
 
