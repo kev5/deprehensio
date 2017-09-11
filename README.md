@@ -2,8 +2,8 @@
 
 ## Members
 
-*Keval Khara  
-*Jinguang Guo  
-*Lijun Xiao  
+* Keval Khara  
+* Jinguang Guo  
+* Lijun Xiao  
 
 
