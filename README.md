@@ -13,5 +13,5 @@ In this assignment, we will attempt to implement an age as well as gender detect
 
 Please go to OpenCV github for source codes(https://github.com/opencv/opencv). All the codes included here are from this link. 
 
-Installing OpenCV steps can be found in this website http://docs.opencv.org/3.2.0/d5/de5/tutorial_py_setup_in_windows.html
+References about how to install OpenCV can be found in this website http://docs.opencv.org/3.2.0/d5/de5/tutorial_py_setup_in_windows.html
 
