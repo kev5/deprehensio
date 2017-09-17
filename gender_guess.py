@@ -82,3 +82,46 @@ def classify(sess, label_list, softmax_output, coder, images, image_file):
 
         print('Guess @ 2 %s, prob = %.2f' % (label_list[second_best], output[second_best]))
     return best_choice
+
+#Initialize before calling the guessGender.
+# tf.reset_default_graph()
+label_list = GENDER_LIST
+nlabels = len(label_list)
+
+print('Executing on %s' % FLAGS.device_id)
+model_fn = select_model(FLAGS.model_type)
+images = tf.placeholder(tf.float32, [None, RESIZE_FINAL, RESIZE_FINAL, 3])
+logits = model_fn(nlabels, images, 1, False)
+
+
+
+def guessGender(file_name):  # pylint: disable=unused-argument
+    #Detect the gender of a single image.
+    with tf.Session() as sess:
+        with tf.device(FLAGS.device_id):
+            init = tf.global_variables_initializer()
+
+            requested_step = FLAGS.requested_step if FLAGS.requested_step else None
+
+            checkpoint_path = '%s' % (GENDER_MODEL_PATH)
+
+            model_checkpoint_path, global_step = get_checkpoint(checkpoint_path, requested_step, FLAGS.checkpoint)
+            saver = tf.train.Saver()
+            saver.restore(sess, model_checkpoint_path)
+
+            softmax_output = tf.nn.softmax(logits)
+
+            coder = ImageCoder()
+
+            try:
+                best_choice = classify(sess, label_list, softmax_output, coder, images, file_name)
+                # print(best_choice)
+                return(best_choice)
+
+
+            except Exception as e:
+                print(e)
+                print('Failed to run image %s ' % file)
+
+if __name__ == '__main__':
+    tf.app.run()
