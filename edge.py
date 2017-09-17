@@ -2,12 +2,9 @@
 
 '''
 This sample demonstrates Canny edge detection.
-
 Usage:
   edge.py [<video source>]
-
   Trackbars control edge thresholds.
-
 '''
 
 # Python 2/3 compatibility
