@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 
-'''
-Video histogram sample to show live histogram of video
+# Video histogram sample to show live histogram of video
 
-Keys:
-    ESC    - exit
-
-'''
+# Keys:
+#     ESC    - exit
 
 import numpy as np
 import cv2
