@@ -65,3 +65,52 @@ class TestSceneRender():
     def getCurrentRect(self):
 
         if self.foreground is not None:
+            
+            x0 = self.currentCenter[0]
+            y0 = self.currentCenter[1]
+            x1 = self.currentCenter[0] + self.foreground.shape[0]
+            y1 = self.currentCenter[1] + self.foreground.shape[1]
+            return np.array([y0, x0, y1, x1])
+        else:
+            x0, y0 = self.currentRect[0]
+            x1, y1 = self.currentRect[2]
+            return np.array([x0, y0, x1, y1])
+
+    def getNextFrame(self):
+        img = self.sceneBg.copy()
+
+        if self.foreground is not None:
+            self.currentCenter = (self.center[0] + self.getXOffset(self.time), self.center[1] + self.getYOffset(self.time))
+            img[self.currentCenter[0]:self.currentCenter[0]+self.foreground.shape[0],
+             self.currentCenter[1]:self.currentCenter[1]+self.foreground.shape[1]] = self.foreground
+        else:
+            self.currentRect = self.initialRect + np.int( 30*cos(self.time*self.speed) + 50*sin(self.time*self.speed))
+            if self.deformation:
+                self.currentRect[1:3] += self.h/20*cos(self.time)
+            cv2.fillConvexPoly(img, self.currentRect, (0, 0, 255))
+
+        self.time += self.timeStep
+        return img
+
+    def resetTime(self):
+        self.time = 0.0
+
+
+if __name__ == '__main__':
+
+    backGr = cv2.imread('../data/graf1.png')
+    fgr = cv2.imread('../data/box.png')
+
+    render = TestSceneRender(backGr, fgr)
+
+    while True:
+
+        img = render.getNextFrame()
+        cv2.imshow('img', img)
+
+        ch = cv2.waitKey(3)
+        if  ch == 27:
+            break
+    #import os
+    #print (os.environ['PYTHONPATH'])
+    cv2.destroyAllWindows()
