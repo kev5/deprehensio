@@ -6,11 +6,11 @@
 * Jinguang Guo  
 * Lijun Xiao  
 
-### Project Description
+## Project Description
 ----------------------------------------------------------------------------------------------------------------------------
 In this assignment, we will attempt to implement an age as well as gender detection using the resources from the OpenCV project. We will be using codes from OpenCV and try to modify them. The functions that we hope to add is age/gender detection.
 
-### Resources
+## Resources
 ----------------------------------------------------------------------------------------------------------------------------
 * Homepage: <http://opencv.org>
 * Docs: <http://docs.opencv.org/master/>
